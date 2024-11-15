@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,31 +8,36 @@
 </head>
 <body>
     <h1>Ajouter un produit</h1>
-    <from action="traitement.php" method="post">
+    <!-- Correction de la balise <from> en <form> et modification de l'attribut action pour pointer vers 'traitement.php' -->
+    <form action="traitement.php" method="get">
         <p>
             <label>
-                Non du produit : 
-                <input type="texte" name="name"> 
+                Nom du produit : 
+                <!-- Correction du type de 'text' au lieu de 'texte' -->
+                <input type="text" name="name" required> 
             </label>
         </p>
         <p>
             <label> 
                 Prix du produit :
-                <input type="number" step="any" name="price">
-</lable>
-
+                <!-- 'step="any"' est correct pour accepter des décimales -->
+                <input type="number" step="any" name="price" required>
+            </label>
         </p>
         <p>
             <label>
                 Quantité désirée : 
-                <input type="number" name="qtt" valeu="1">
+                <!-- Correction de l'attribut 'value' au lieu de 'valeu' -->
+                <input type="number" name="qtt" value="1" required>
             </label>
         </p>
         <p>
-            <input type="submit" name="submit" valeu="Ajouter le produit">
+            <!-- Correction de 'valeu' en 'value' pour l'attribut de valeur du bouton submit -->
+            <input type="submit" name="submit" value="Ajouter le produit">
         </p>
-</from>
-    
+    </form>
 </body>
 </html>
+
+
 
