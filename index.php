@@ -8,36 +8,51 @@
 </head>
 <body>
     <h1>Ajouter un produit</h1>
-    <!-- Correction de la balise <from> en <form> et modification de l'attribut action pour pointer vers 'traitement.php' -->
-    <form action="traitement.php" method="get">
+
+    <?php
+    // Démarrer une session pour accéder aux messages qui peuvent être générés par traitement.php
+    session_start();
+
+    // Vérifier s'il y a un message dans la session, et l'afficher s'il existe
+    if (isset($_SESSION['message'])) {
+        // Afficher le message avec un style en rouge pour attirer l'attention de l'utilisateur
+        echo "<p style='color:red;'>" . $_SESSION['message'] . "</p>";
+        // Supprimer le message après l'avoir affiché, pour ne pas qu'il s'affiche à nouveau après un rafraîchissement de la page
+        unset($_SESSION['message']);
+    }
+    ?>
+
+    <!-- Formulaire pour ajouter un produit -->
+    <!-- Utiliser la méthode POST pour éviter d'exposer les données dans l'URL -->
+    <form action="traitement.php" method="post">
         <p>
             <label>
                 Nom du produit : 
-                <!-- Correction du type de 'text' au lieu de 'texte' -->
-                <input type="text" name="name" required> 
+                <input type="text" name="name" required> <!-- Champ texte obligatoire pour le nom du produit -->
             </label>
         </p>
         <p>
             <label> 
                 Prix du produit :
-                <!-- 'step="any"' est correct pour accepter des décimales -->
-                <input type="number" step="any" name="price" required>
+                <input type="number" step="any" name="price" required> <!-- Champ numérique pour le prix, accepte les décimales -->
             </label>
         </p>
         <p>
             <label>
                 Quantité désirée : 
-                <!-- Correction de l'attribut 'value' au lieu de 'valeu' -->
-                <input type="number" name="qtt" value="1" required>
+                <input type="number" name="qtt" value="1" required> <!-- Champ numérique avec une valeur par défaut de 1 -->
             </label>
         </p>
         <p>
-            <!-- Correction de 'valeu' en 'value' pour l'attribut de valeur du bouton submit -->
+            <!-- Bouton de soumission du formulaire, envoie les données à traitement.php -->
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
     </form>
 </body>
 </html>
+
+
+
 
 
 
