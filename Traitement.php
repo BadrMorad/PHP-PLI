@@ -1,3 +1,4 @@
+
 <?php
 session_start(); // Démarre la session pour pouvoir stocker les produits dans $_SESSION
 
