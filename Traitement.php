@@ -1,31 +1,42 @@
-
 <?php
-session_start(); // Démarre la session pour pouvoir stocker les produits dans $_SESSION
+session_start(); // Démarrer la session
+// La fonction session_start() initialise une nouvelle session ou reprend une session existante.
+// Contrairement aux cookies, qui stockent des données sur le client, 
+// les sessions stockent les données sur le serveur, offrant ainsi une meilleure sécurité 
+// pour des informations sensibles comme les identifiant
 
-// Filtrage et validation des données envoyées par le formulaire
-$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING); // Nettoie le nom du produit pour éviter les injections XSS
-$price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // Vérifie que le prix est un nombre valide avec des décimales autorisées
-$qtt = filter_input(INPUT_POST, 'qtt', FILTER_VALIDATE_INT); // Vérifie que la quantité est un entier valide
-
-// Vérifie si les données sont valides avant de les ajouter à la session
-if ($name && $price !== false && $qtt !== false) {
-    $total = $price * $qtt; // Calcule le total pour ce produit (prix * quantité)
-    
-    // Stocke les données du produit dans la session
-    $_SESSION['products'][] = [
-        'name' => $name, // Nom du produit
-        'price' => $price, // Prix unitaire du produit
-        'qtt' => $qtt, // Quantité du produit
-        'total' => $total // Total calculé pour le produit
-    ];
-
-    // Redirige l'utilisateur vers la page récapitulative des produits
-    header('Location: recap.php');
-    exit(); // Arrête l'exécution du script après la redirection
-} else {
-    echo "Erreur dans les données fournies."; // Affiche un message d'erreur si les données sont invalides
+if (!isset($_SESSION['produits'])) {
+    $_SESSION['produits'] = [];
 }
-?>
+
+if (isset($_POST['action'])) {
+    if ($_POST['action'] == 'ajouter' && !empty($_POST['produit']) && !empty($_POST['quantite']) && !empty($_POST['prix'])) {
+        $produit = [
+            'nom' => $_POST['produit'],
+            'quantite' => $_POST['quantite'],
+            'prix' => $_POST['prix']
+        ];
+        $_SESSION['produits'][] = $produit; // Ajoute le produit à la session
+        $_SESSION['message'] = "Produit ajouté avec succès.";
+    }
+}
+
+if (isset($_GET['action']) && $_GET['action'] == 'supprimer' && isset($_GET['id'])) {
+    $id = $_GET['id'];
+    if (isset($_SESSION['produits'][$id])) {
+        unset($_SESSION['produits'][$id]);
+        $_SESSION['message'] = "Produit supprimé avec succès.";
+    }
+}
+
+if (isset($_GET['action']) && $_GET['action'] == 'supprimer_tous') {
+    $_SESSION['produits'] = [];
+    $_SESSION['message'] = "Tous les produits ont été supprimés.";
+}
+
+header('Location: index.php');
+exit();
+
 
 
 
