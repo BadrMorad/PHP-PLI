@@ -1,55 +1,97 @@
 body {
-  font-family: Arial, sans-serif; /* Police de caractères */
-  background-color: #f4f4f4; /* Couleur de fond */
-  margin: 0; /* Supprime les marges par défaut */
-  padding: 20px; /* Ajoute un peu de padding */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: url("commerce.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #f4c430;
 }
 
 nav {
-  background-color: #333; /* Couleur de fond de la barre de navigation */
-  padding: 10px; /* Padding pour la barre de navigation */
+  margin-top: 10px;
 }
 
 nav a {
-  color: white; /* Couleur des liens */
-  margin-right: 15px; /* Espace entre les liens */
-  text-decoration: none; /* Supprime le soulignement des liens */
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 1.2rem;
 }
 
-h1,
+nav a:hover {
+  text-decoration: underline;
+}
+
+.form-container,
+.summary,
+.products {
+  background: rgba(0, 0, 0, 0.8);
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
 h2 {
-  color: darkblue; /* Couleur des titres */
+  color: #f4c430;
 }
 
-form {
-  background-color: white; /* Couleur de fond du formulaire */
-  padding: 20px; /* Padding pour le formulaire */
-  border-radius: 5px; /* Coins arrondis */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre pour le formulaire */
+form input,
+form button {
+  display: block;
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
 }
 
-input[type="text"],
-input[type="number"] {
-  width: calc(100% - 22px); /* Largeur des champs de texte */
-  padding: 10px; /* Padding pour les champs */
-  margin: 10px 0; /* Marges pour les champs */
-  border: 1px solid #ccc; /* Bordure des champs */
-  border-radius: 5px; /* Coins arrondis */
+form button {
+  background: #f4c430;
+  color: #000;
+  cursor: pointer;
 }
 
-button {
-  background-color: #5cb85c; /* Couleur de fond du bouton */
-  color: white; /* Couleur du texte du bouton */
-  padding: 10px 15px; /* Padding pour le bouton */
-  border: none; /* Supprime la bordure */
-  border-radius: 5px; /* Coins arrondis */
-  cursor: pointer; /* Curseur en main */
+form button:hover {
+  background: #e0b020;
 }
 
-button:hover {
-  background-color: #4cae4c; /* Couleur de fond au survol */
+ul {
+  list-style: none;
+  padding: 0;
 }
 
-p {
-  color: green; /* Couleur des messages */
+ul li {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.delete-btn,
+.delete-all-btn {
+  color: #f00;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.delete-btn:hover,
+.delete-all-btn:hover {
+  text-decoration: underline;
+}
+
+.message {
+  text-align: center;
+  color: #0f0;
 }
