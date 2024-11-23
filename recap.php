@@ -1,40 +1,72 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Récapitulatif</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Récapitulatif des produits</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Résumé des produits</h1>
-        <nav>
-            <a href="index.php">Accueil</a>
-            <a href="recap.php">Récapitulatif</a>
-        </nav>
+        <h1>Récapitulatif des produits</h1>
     </header>
+    <nav>
+        <a href="index.php">Accueil</a> | <a href="recap.php">Récapitulatif</a>
+    </nav>
 
-    <section class="products">
-        <h2>Produits ajoutés :</h2>
-        <ul>
-            <?php if (isset($_SESSION['produits']) && count($_SESSION['produits']) > 0): ?>
-                <?php foreach ($_SESSION['produits'] as $id => $produit): ?>
-                    <li>
-                        <?php echo $produit['nom'] . " - Quantité: " . $produit['quantite'] . " - Prix: " . $produit['prix'] . "€"; ?>
-                        <a href="traitement.php?action=supprimer&id=<?php echo $id; ?>" class="delete-btn">Supprimer</a>
-                    </li>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <li>Aucun produit dans la liste.</li>
-            <?php endif; ?>
-        </ul>
-        <a href="traitement.php?action=supprimer_tous" class="delete-all-btn">Supprimer tous les produits</a>
-    </section>
+    <?php
+    session_start();
+
+    if (isset($_SESSION['message'])) {
+        echo "<div class='message {$_SESSION['message']['type']}'>{$_SESSION['message']['text']}</div>";
+        unset($_SESSION['message']);
+    }
+
+    if (isset($_SESSION['products']) && count($_SESSION['products']) > 0): ?>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix Unitaire</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+                <?php
+                $grandTotal = 0;
+                foreach ($_SESSION['products'] as $index => $product) {
+                    $grandTotal += $product['total'];
+                    echo "<tr>
+                            <td>{$product['name']}</td>
+                            <td>{$product['price']} €</td>
+                            <td>
+                                <a class='btn btn-decrease' href='traitement.php?action=down-qtt&index=$index'>-</a>
+                                {$product['qtt']}
+                                <a class='btn btn-increase' href='traitement.php?action=up-qtt&index=$index'>+</a>
+                            </td>
+                            <td>{$product['total']} €</td>
+                            <td><a class='btn btn-delete' href='traitement.php?action=delete&index=$index'>Supprimer</a></td>
+                          </tr>";
+                }
+                ?>
+            </table>
+        </div>
+        <h2>Total général : <?php echo $grandTotal; ?> €</h2>
+        <a class="btn btn-clear" href="traitement.php?action=clear">Supprimer tous les produits</a>
+    <?php else: ?>
+        <p>Aucun produit ajouté.</p>
+    <?php endif; ?>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 

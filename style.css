@@ -1,97 +1,94 @@
+/* Général */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: url("commerce.jpg") no-repeat center center fixed;
+  padding: 0;
+  color: #333;
+  background: url("consumer-concept-minimalism-mini-shopping-trolley-shopping-color-background-top-view_661495-6733.jpg.avif")
+    no-repeat center center fixed;
   background-size: cover;
-  color: #fff;
 }
 
+/* En-tête */
 header {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px 0;
   text-align: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.8);
 }
 
-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
-  color: #f4c430;
-}
-
+/* Navigation */
 nav {
-  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  text-align: center;
 }
 
 nav a {
   color: #fff;
-  margin: 0 15px;
   text-decoration: none;
-  font-size: 1.2rem;
+  margin: 0 15px;
+  font-weight: bold;
 }
 
 nav a:hover {
   text-decoration: underline;
 }
 
-.form-container,
-.summary,
-.products {
-  background: rgba(0, 0, 0, 0.8);
+/* Formulaires */
+.form-container {
+  width: 50%;
   margin: 20px auto;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 600px;
-}
-
-h2 {
-  color: #f4c430;
-}
-
-form input,
-form button {
-  display: block;
-  width: calc(100% - 20px);
-  margin: 10px auto;
-  padding: 10px;
-  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
   border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-form button {
-  background: #f4c430;
-  color: #000;
-  cursor: pointer;
+/* Tableaux */
+.table-container {
+  width: 80%;
+  margin: 20px auto;
 }
 
-form button:hover {
-  background: #e0b020;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-ul li {
-  margin: 10px 0;
+table th,
+table td {
+  border: 1px solid #ddd;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-}
-
-.delete-btn,
-.delete-all-btn {
-  color: #f00;
-  text-decoration: none;
-  margin-left: 10px;
-}
-
-.delete-btn:hover,
-.delete-all-btn:hover {
-  text-decoration: underline;
-}
-
-.message {
   text-align: center;
-  color: #0f0;
 }
+
+table th {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Boutons */
+.btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.btn-increase {
+  background-color: #28a745;
+}
+
+.btn-decrease {
+  background-color: #ffc107;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
+
+.btn-clear
