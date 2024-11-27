@@ -1,10 +1,9 @@
-/* Général */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  color: #333;
-  background: url("consumer-concept-minimalism-mini-shopping-trolley-shopping-color-background-top-view_661495-6733.jpg.avif")
+  color: #dd0c0c;
+  background: url("composition-black-friday-shopping-cart-with-copy-space.jpg")
     no-repeat center center fixed;
   background-size: cover;
 }
