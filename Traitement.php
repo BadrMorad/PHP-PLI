@@ -1,6 +1,9 @@
 <?php
-session_start(); // Démarrer la session pour stocker les données
-
+session_start(); 
+// session_start(); La fonction session_start(); en PHP est utilisée pour démarrer une nouvelle session ou reprendre une session existante. 
+//Les sessions permettent de stocker des informations sur l'utilisateur à travers différentes pages sans avoir à les passer explicitement dans les URL ou les formulaires
+//Les cookies sont de petits fichiers stockés sur le client (navigateur) et envoyés au serveur à chaque requête HTTP.
+// Ils sont souvent utilisés pour stocker des informations qui doivent persister entre les visites de l'utilisateur
 // Vérifier si une action est définie dans l'URL
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
@@ -78,11 +81,9 @@ if (isset($_GET['action'])) {
 // Rediriger vers la page de récapitulatif
 header('Location: recap.php');
 exit();
-
-
-
-
-
+//Les superglobales permettent de centraliser l'accès aux données importantes dans un script PHP, 
+//rendant le code plus propre et plus facile à maintenir. Elles sont toujours disponibles, quel que soit le contexte, 
+//et sont essentielles pour des tâches courantes comme la gestion des formulaires et des sessions.
 
 
 
