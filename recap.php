@@ -33,22 +33,24 @@
                     <th>Actions</th>
                 </tr>
                 <?php
-                $grandTotal = 0;
-                foreach ($_SESSION['products'] as $index => $product) {
-                    $grandTotal += $product['total'];
-                    echo "<tr>
-                            <td>{$product['name']}</td>
-                            <td>{$product['price']} €</td>
-                            <td>
-                                <a class='btn btn-decrease' href='traitement.php?action=down-qtt&index=$index'>-</a>
-                                {$product['qtt']}
-                                <a class='btn btn-increase' href='traitement.php?action=up-qtt&index=$index'>+</a>
-                            </td>
-                            <td>{$product['total']} €</td>
-                            <td><a class='btn btn-delete' href='traitement.php?action=delete&index=$index'>Supprimer</a></td>
-                          </tr>";
-                }
-                ?>
+$grandTotal = 0;
+foreach ($_SESSION['products'] as $index => $product) {
+    $productTotal = isset($product['total']) ? $product['total'] : 0;
+    $grandTotal += $productTotal;
+    echo "<tr>
+            <td>{$product['name']}</td>
+            <td>{$product['price']} €</td>
+            <td>
+                <a class='btn btn-decrease' href='traitement.php?action=down-qtt&index=$index'>-</a>
+                {$product['qtt']}
+                <a class='btn btn-increase' href='traitement.php?action=up-qtt&index=$index'>+</a>
+            </td>
+            <td>{$productTotal} €</td>
+            <td><a class='btn btn-delete' href='traitement.php?action=delete&index=$index'>Supprimer</a></td>
+          </tr>";
+}
+?>
+
             </table>
         </div>
         <h2>Total général : <?php echo $grandTotal; ?> €</h2>

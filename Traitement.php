@@ -43,6 +43,37 @@ if (isset($_GET['action'])) {
             }
             break;
 
+        case 'delete': // Cas où l'action est "delete"
+            // Vérifier que l'index du produit à supprimer est défini et valide
+            if (isset($_GET['index']) && is_numeric($_GET['index'])) {
+                $index = (int)$_GET['index'];
+                if (isset($_SESSION['products'][$index])) {
+                    // Supprimer le produit de la session
+                    unset($_SESSION['products'][$index]);
+                    // Réindexer le tableau pour éviter les trous
+                    $_SESSION['products'] = array_values($_SESSION['products']);
+
+                    // Préparer un message de succès
+                    $_SESSION['message'] = [
+                        'type' => 'success',
+                        'text' => 'Produit supprimé avec succès !'
+                    ];
+                } else {
+                    // Si l'index n'existe pas dans la session
+                    $_SESSION['message'] = [
+                        'type' => 'error',
+                        'text' => 'Produit non trouvé.'
+                    ];
+                }
+            } else {
+                // Si l'index n'est pas valide
+                $_SESSION['message'] = [
+                    'type' => 'error',
+                    'text' => 'Index invalide.'
+                ];
+            }
+            break;
+
         default: // Cas où l'action est inconnue
             $_SESSION['message'] = [
                 'type' => 'error',
